@@ -16,7 +16,7 @@ export const Home = () => {
 
   const noMorePosts = page + postsPerPage >= allPosts.length;
 
-  const filteredPosts = !!searchValue
+  const filteredPosts = searchValue
     ? allPosts.filter((post) => {
         return post.title.toLowerCase().includes(searchValue.toLowerCase());
       })
@@ -68,11 +68,7 @@ export const Home = () => {
 
       {!searchValue && (
         <div className="button-container">
-          <Button
-            text={'Load More Posts'}
-            onClick={loadMorePosts}
-            disable={noMorePosts}
-          />
+          <Button text={'Load More Posts'} onClick={loadMorePosts} disable={noMorePosts} />
         </div>
       )}
     </section>

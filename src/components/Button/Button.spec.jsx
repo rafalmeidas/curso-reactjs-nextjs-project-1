@@ -4,7 +4,8 @@ import { Button } from '.';
 
 describe('<Button />', () => {
   it('should render the button with the text "Load More"', () => {
-    render(<Button text="Load more" />);
+    const fn = jest.fn();
+    render(<Button text="Load more" onClick={fn} />);
     expect.assertions(1);
 
     const button = screen.getByRole('button', { name: /load more/i });
@@ -22,22 +23,22 @@ describe('<Button />', () => {
   });
 
   it('should be disabled when disabled is true', () => {
-    render(<Button text="Load more" disable={true} />);
+    const fn = jest.fn();
+    render(<Button text="Load more" onClick={fn} disable={true} />);
 
     expect(screen.getByRole('button', { name: /load more/i })).toBeDisabled();
   });
 
   it('should be enabled when disabled is false', () => {
-    render(<Button text="Load more" disable={false} />);
+    const fn = jest.fn();
+    render(<Button text="Load more" onClick={fn} disable={false} />);
 
     expect(screen.getByRole('button', { name: /load more/i })).toBeEnabled();
   });
 
   it('should match snapshot', () => {
     const fn = jest.fn();
-    const { container } = render(
-      <Button text="Load more" onClick={fn} disable={false} />,
-    );
+    const { container } = render(<Button text="Load more" onClick={fn} disable={false} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
